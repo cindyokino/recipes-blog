@@ -1,23 +1,17 @@
 package okino.cindy.recipesBlog.entities;
 
 import java.util.List;
-import java.util.Locale.Category;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table
-//@Getter
-//@Setter
-//@EqualsAndHashCode
-@Data
+@Data //Lombok anotations: @Getter, @Setter and @EqualsAndHashCode OR @Data
 public class Recipe {
 	
 	@Setter(AccessLevel.NONE)
