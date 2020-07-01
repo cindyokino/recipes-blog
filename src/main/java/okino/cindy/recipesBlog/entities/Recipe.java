@@ -2,6 +2,7 @@ package okino.cindy.recipesBlog.entities;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,19 +24,21 @@ public class Recipe {
 	private String name;
 	private Integer duration;
 	private Category category;
-//	private List<String> ingredients;
+	
+	@ElementCollection
+	private List<String> ingredients;
 	private String instructions;
 	
 	public Recipe() {		
 	}
 	
 	public Recipe(String name, Integer time, Category category, 
-//			List<String> ingredients, 
+			List<String> ingredients, 
 			String instructions) {
 		this.name = name;
 		this.duration = time;
 		this.category = category;
-//		this.ingredients = ingredients;
+		this.ingredients = ingredients;
 		this.instructions = instructions;
 	}
 }
