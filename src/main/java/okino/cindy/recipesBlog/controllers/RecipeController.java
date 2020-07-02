@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import okino.cindy.recipesBlog.entities.Category;
@@ -30,9 +29,9 @@ public class RecipeController {
 	private RecipeService recipeService;
 	
 	@GetMapping
-	public ResponseEntity<List<Recipe>> findRecipes(
-			@RequestParam(value = "category", defaultValue = "") Category category) {		
-		return ResponseEntity.ok().body(list);
+	public ResponseEntity<List<Recipe>> findRecipes() {
+		List<Recipe> recipes = recipeService.findAll();
+		return ResponseEntity.ok().body(recipes);
  	}
 	
 	@GetMapping(value = "/{name}")
@@ -42,7 +41,8 @@ public class RecipeController {
 	
 	@PostMapping
 	public ResponseEntity<List<Recipe>> insertRecipe(@RequestBody List<Recipe> recipes) {
-		return ResponseEntity.ok(recipes);
+			recipes = recipeService.insert(recipes);
+			return ResponseEntity.ok(recipes);
 	}
 	
 //	@PostMapping // database test for one recipe
