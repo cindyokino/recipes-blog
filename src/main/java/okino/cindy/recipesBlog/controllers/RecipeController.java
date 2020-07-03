@@ -40,16 +40,10 @@ public class RecipeController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<List<Recipe>> insertRecipe(@RequestBody List<Recipe> recipes) {
-			recipes = recipeService.insert(recipes);
-			return ResponseEntity.ok(recipes);
+	public ResponseEntity<Recipe> insertRecipe(@RequestBody Recipe recipe) {
+		recipeService.insert(recipe);
+		return ResponseEntity.ok(recipe);
 	}
-	
-//	@PostMapping // database test for one recipe
-//	public ResponseEntity<Recipe> insertRecipe(@RequestBody Recipe recipe) {
-//		recipeService.save(recipe);
-//		return ResponseEntity.ok(recipe);
-//	}
 	
 	@PutMapping
 	public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe recipe) {

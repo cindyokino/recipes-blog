@@ -14,11 +14,13 @@ public class RecipeService {
 	@Autowired
 	private RecipeRepository recipeRepository;
 	
-	public List<Recipe> insert(List<Recipe> recipes) {
-		return recipeRepository.saveAll(recipes);
+	public Recipe insert(Recipe recipe) {
+		return recipeRepository.save(recipe);
 	}
 	
 	public List<Recipe> findAll() {
 		return recipeRepository.findAll();
 	}
+
+	
 }
