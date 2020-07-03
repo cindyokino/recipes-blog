@@ -29,15 +29,15 @@ public class RecipeController {
 	private RecipeService recipeService;
 	
 	@GetMapping
-	public ResponseEntity<List<Recipe>> findRecipes() {
+	public ResponseEntity<List<Recipe>> findRecipes() { // ADD filter by category
 		List<Recipe> recipes = recipeService.findAll();
 		return ResponseEntity.ok().body(recipes);
  	}
 	
-	@GetMapping(value = "/{name}")
-	public ResponseEntity<List<Recipe>> findRecipeByName() {
-		return ResponseEntity.ok().body(list);
-	}
+//	@GetMapping(value = "/{name}") 
+//	public ResponseEntity<List<Recipe>> findRecipeByName() {
+//		return ResponseEntity.ok().body(list);
+//	}
 	
 	@PostMapping
 	public ResponseEntity<Recipe> insertRecipe(@RequestBody Recipe recipe) {
@@ -47,12 +47,13 @@ public class RecipeController {
 	
 	@PutMapping
 	public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe recipe) {
-		Recipe updatedRecipe = new Recipe("Strawberry shake", 15, Category.DRINKS, Arrays.asList("2 carrots", "1 cup of water", "1/2 cup of oil", "2 eggs", "1 tablespoon of baking powder", "2 cups of flour", "1 cup of sugar"), "Mix everything on the mixer, add ice and enjoy !.");
+		Recipe updatedRecipe = recipeService.update(recipe);
 		return ResponseEntity.ok().body(updatedRecipe);
 	}
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deleteRecipe(@PathVariable Long id) {
+		recipeService.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
 	
