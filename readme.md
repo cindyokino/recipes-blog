@@ -61,6 +61,7 @@ Response: 200 ok
 ##### Response body:
 
 [
+
 {
     "id": 1,
     "name": "Strawberry shake",
@@ -69,6 +70,7 @@ Response: 200 ok
     "ingredients": ["5 Strawberries", "1 cup of milk", "1 tablespoon of sugar"],
     "instructions": "Mix everything on the mixer, add ice and enjoy !."
 },
+
 {
     "id": 2,
     "name": "Avocado shake",
@@ -77,6 +79,7 @@ Response: 200 ok
     "ingredients": ["1 small avocado", "1 cup of milk", "1 tablespoon of sugar"],
     "instructions": "Mix everything on the mixer, add ice and enjoy !."
 }
+
 ]
 
 #### * Endpoint to find one or more recipes by name or part of a name (GET "/recipes/{name}")

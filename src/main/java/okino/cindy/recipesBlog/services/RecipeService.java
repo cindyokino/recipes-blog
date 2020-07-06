@@ -29,12 +29,15 @@ public class RecipeService {
 	
 	public Recipe findById(Long id) {
 		Optional<Recipe> obj = recipeRepository.findById(id);
-		return obj.orElseThrow(() -> new IllegalArgumentException("ERROR: Object not found at the database"));
+		return obj.orElseThrow(() -> new IllegalArgumentException("ERROR: Recipe not found at the database"));
 	}
 	
 	public Recipe update(Recipe recipe) {
 		if (!(findById(recipe.getId()) == null)) {
 			recipeRepository.save(recipe);
+		} else {
+			System.out.println("ERROR: House to update not found");
+			throw new IllegalArgumentException("Recipe to update not found");
 		}
 		return recipeRepository.save(recipe);
 	}

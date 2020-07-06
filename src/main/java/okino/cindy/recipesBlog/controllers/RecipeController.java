@@ -47,7 +47,12 @@ public class RecipeController {
 	
 	@PutMapping
 	public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe recipe) {
-		Recipe updatedRecipe = recipeService.update(recipe);
+		Recipe updatedRecipe;
+		try {
+		updatedRecipe = recipeService.update(recipe);
+		} catch(IllegalArgumentException exception) {
+			return ResponseEntity.badRequest().build();
+		}
 		return ResponseEntity.ok().body(updatedRecipe);
 	}
 	
@@ -55,6 +60,5 @@ public class RecipeController {
 	public ResponseEntity<Void> deleteRecipe(@PathVariable Long id) {
 		recipeService.deleteById(id);
 		return ResponseEntity.noContent().build();
-	}
-	
+	}	
 }
