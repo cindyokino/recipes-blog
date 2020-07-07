@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import okino.cindy.recipesBlog.entities.Category;
@@ -34,19 +35,20 @@ public class RecipeController {
 		return ResponseEntity.ok().body(recipes);
  	}
 	
-//	@GetMapping(value = "/{name}") 
-//	public ResponseEntity<List<Recipe>> findRecipeByName() {
-//		return ResponseEntity.ok().body(list);
-//	}
+	@GetMapping(value = "/{search}") 
+	public ResponseEntity<List<Recipe>> findRecipeByName(@RequestParam(value="name", required=false) String name) { // RequestParam é o que está no endereco
+		List<Recipe> list = recipeService.findByName(name);
+		return ResponseEntity.ok().body(list);
+	}
 	
 	@PostMapping
-	public ResponseEntity<Recipe> insertRecipe(@RequestBody Recipe recipe) {
+	public ResponseEntity<Recipe> insertRecipe(@RequestBody Recipe recipe) { // Body é o que está no corpo
 		recipeService.insert(recipe);
 		return ResponseEntity.ok(recipe);
 	}
 	
 	@PutMapping
-	public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe recipe) {
+	public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe recipe) { 
 		Recipe updatedRecipe;
 		try {
 		updatedRecipe = recipeService.update(recipe);
@@ -57,7 +59,7 @@ public class RecipeController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> deleteRecipe(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteRecipe(@PathVariable Long id) {  // PathVariable é o que está no endereco (ver RequestParam X PathVariable)
 		recipeService.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}	

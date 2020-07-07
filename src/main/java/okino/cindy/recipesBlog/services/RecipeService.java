@@ -23,9 +23,9 @@ public class RecipeService {
 		return recipeRepository.findAll();
 	}
 
-//	public List<Recipe> findByName() {
-//		return recipeRepository.findAll();  // SEARCH find by name or part of a name
-//	}
+	public List<Recipe> findByName(String name) {		
+		return recipeRepository.findByNameContainingIgnoreCase(name);
+	}
 	
 	public Recipe findById(Long id) {
 		Optional<Recipe> obj = recipeRepository.findById(id);
