@@ -82,21 +82,25 @@ Response: 200 ok
 
 ]
 
-#### * Endpoint to find one or more recipes by name or part of a name (GET "/recipes/{name}")
+#### * Endpoint to find one or more recipes by name or part of a name (GET "/recipes/search?name=chocolat" or "/recipes/search?name=choc" or "/recipes/search?name=milk")
 
 ##### Response body: 
 
 [
 {
-    "id": 1,
-    "name": "Strawberry shake",
-    "duration": 15,
+    "id": 3,
+    "name": "Chocolat milkshake",
+    "duration": 20,
     "category": "DRINKS",
-    "ingredients": ["5 Strawberries", "1 cup of milk", "1 tablespoon of sugar"],
-    "instructions": "Mix everything on the mixer, add ice and enjoy !."
+    "ingredients": "1 vanilla ice cream scoop", "1 cup of milk", "1 tablespoon of chocolat powder"],
+    "instructions": "Mix everything on the mixer and enjoy !."
 }
 ]
 
 ## Sprint 2
-### 
-#### * To be defined
+### Create Unit Tests:
+#### * RecipeControllerTest
+
+#### * RecipeRepositoryTest
+
+#### * RecipeServiceTest
